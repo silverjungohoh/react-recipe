@@ -1,6 +1,6 @@
 import { useState } from "react";
 import RecipeItem from "./RecipeItem";
-import ControllMenu from "./ControllMenu";
+import ControlMenu from "./ControlMenu";
 import MyButton from "./MyButton";
 import { useNavigate } from "react-router-dom";
 
@@ -61,12 +61,12 @@ function RecipeList({ recipeList }) {
     <div className="recipe-list">
       <div className="menu-wrapper">
         <div className="left-col">
-          <ControllMenu
+          <ControlMenu
             value={sortType}
             onChange={setSortType}
             optionList={sortOptionList}
           />
-          <ControllMenu
+          <ControlMenu
             value={filter}
             onChange={setFilter}
             optionList={filterOptionList}

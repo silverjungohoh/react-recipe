@@ -1,4 +1,4 @@
-function ControllMenu({ value, onChange, optionList }) {
+function ControlMenu({ value, onChange, optionList }) {
   return (
     <select
       className="control-menu"
@@ -14,4 +14,4 @@ function ControllMenu({ value, onChange, optionList }) {
   );
 }
 
-export default ControllMenu;
+export default ControlMenu;
