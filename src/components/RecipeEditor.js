@@ -1,4 +1,4 @@
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import MyButton from "./MyButton";
 import MyHeader from "./MyHeader";
 import { useNavigate } from "react-router-dom";
@@ -44,7 +44,7 @@ function getStringDate(date) {
   return `${year}-${month}-${day}`;
 }
 
-function RecipeEditor() {
+function RecipeEditor({ isEdit, origin }) {
   const navigate = useNavigate();
   const [date, setDate] = useState(getStringDate(new Date()));
   const [taste, setTaste] = useState(3);
@@ -54,12 +54,12 @@ function RecipeEditor() {
   const titleRef = useRef();
   const contentRef = useRef();
 
-  const { onCreate } = useContext(RecipeDispatchContext);
+  const { onCreate, onEdit } = useContext(RecipeDispatchContext);
 
   function handleClickTaste(taste) {
     setTaste(taste);
   }
-  function handleSubmit(e) {
+  function handleSubmit() {
     if (title.length < 1) {
       titleRef.current.focus();
       return;
@@ -69,19 +69,32 @@ function RecipeEditor() {
       contentRef.current.focus();
       return;
     }
-    const confirmed = window.confirm("레시피를 등록하시겠습니까?");
+    const confirmed = window.confirm(
+      isEdit ? "레시피를 수정하시겠습니까?" : "레시피를 등록하시겠습니까?"
+    );
     if (confirmed) {
-      onCreate(date, title, content, taste);
-      window.alert("등록되었습니다!");
+      isEdit
+        ? onEdit(origin.id, date, title, content, taste)
+        : onCreate(date, title, content, taste);
+      window.alert(isEdit ? "수정되었습니다!" : "등록되었습니다!");
       navigate("/", { replace: true });
     }
   }
+
+  useEffect(() => {
+    if (isEdit) {
+      setDate(getStringDate(new Date(parseInt(origin.date))));
+      setTaste(origin.taste);
+      setTitle(origin.title);
+      setContent(origin.content);
+    }
+  }, [isEdit, origin]);
 
   return (
     <div className="recipe-editor">
       <div>
         <MyHeader
-          headText={"새로운 레시피"}
+          headText={isEdit ? "레시피 수정" : "레시피 등록"}
           leftChild={<MyButton text={"< 뒤로"} onClick={() => navigate(-1)} />}
         />
       </div>
