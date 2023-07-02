@@ -4,6 +4,7 @@ import MyHeader from "./MyHeader";
 import { useNavigate } from "react-router-dom";
 import TasteItem from "./TasteItem";
 import { RecipeDispatchContext } from "../App";
+import { getStringDate } from "../util/date";
 
 const tasteList = [
   {
@@ -32,17 +33,6 @@ const tasteList = [
     tasteDesc: "Best",
   },
 ];
-
-function getStringDate(date) {
-  let year = date.getFullYear();
-  let month = date.getMonth() + 1;
-  let day = date.getDate();
-
-  month = month < 10 ? `0${month}` : month;
-  day = day < 10 ? `0${day}` : day;
-
-  return `${year}-${month}-${day}`;
-}
 
 function RecipeEditor({ isEdit, origin }) {
   const navigate = useNavigate();
