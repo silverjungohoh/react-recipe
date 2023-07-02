@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import MyButton from "./MyButton";
 import MyHeader from "./MyHeader";
 import { useNavigate } from "react-router-dom";
@@ -19,9 +19,10 @@ function RecipeEditor({ isEdit, origin }) {
 
   const { onCreate, onEdit, onRemove } = useContext(RecipeDispatchContext);
 
-  function handleClickTaste(taste) {
+  const handleClickTaste = useCallback((taste) => {
     setTaste(taste);
-  }
+  }, []);
+
   function handleSubmit() {
     if (title.length < 1) {
       titleRef.current.focus();

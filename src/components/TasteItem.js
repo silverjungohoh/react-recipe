@@ -1,3 +1,5 @@
+import React from "react";
+
 function TasteItem({ tasteItem, onClick, isSelected }) {
   return (
     <div
@@ -10,4 +12,4 @@ function TasteItem({ tasteItem, onClick, isSelected }) {
   );
 }
 
-export default TasteItem;
+export default React.memo(TasteItem);
