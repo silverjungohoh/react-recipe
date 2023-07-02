@@ -1,8 +1,9 @@
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import MyButton from "./MyButton";
 import MyHeader from "./MyHeader";
 import { useNavigate } from "react-router-dom";
 import TasteItem from "./TasteItem";
+import { RecipeDispatchContext } from "../App";
 
 const tasteList = [
   {
@@ -53,8 +54,27 @@ function RecipeEditor() {
   const titleRef = useRef();
   const contentRef = useRef();
 
+  const { onCreate } = useContext(RecipeDispatchContext);
+
   function handleClickTaste(taste) {
     setTaste(taste);
+  }
+  function handleSubmit(e) {
+    if (title.length < 1) {
+      titleRef.current.focus();
+      return;
+    }
+
+    if (content.length < 1) {
+      contentRef.current.focus();
+      return;
+    }
+    const confirmed = window.confirm("레시피를 등록하시겠습니까?");
+    if (confirmed) {
+      onCreate(date, title, content, taste);
+      window.alert("등록되었습니다!");
+      navigate("/", { replace: true });
+    }
   }
 
   return (
@@ -122,6 +142,7 @@ function RecipeEditor() {
                 navigate(-1);
               }}
             />
+            <MyButton type={"positive"} text={"등록"} onClick={handleSubmit} />
           </div>
         </section>
       </div>
