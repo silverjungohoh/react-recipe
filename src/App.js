@@ -3,7 +3,7 @@ import Home from "./pages/Home";
 import Edit from "./pages/Edit";
 import New from "./pages/New";
 import Recipe from "./pages/Recipe";
-import React, { useReducer, useRef } from "react";
+import React, { useEffect, useReducer, useRef } from "react";
 
 const reducer = (state, action) => {
   let newState = [];
@@ -31,6 +31,7 @@ const reducer = (state, action) => {
     default:
       return state;
   }
+  localStorage.setItem("recipe", JSON.stringify(newState));
   return newState;
 };
 
@@ -39,8 +40,18 @@ export const RecipeDispatchContext = React.createContext();
 
 function App() {
   const [data, dispatch] = useReducer(reducer, []);
+  const dataId = useRef(0);
 
-  const dataId = useRef(1);
+  useEffect(() => {
+    const localData = localStorage.getItem("recipe");
+    if (localData) {
+      const recipeList = JSON.parse(localData).sort(
+        (a, b) => parseInt(b.id) - parseInt(a.id)
+      );
+      dataId.current = parseInt(recipeList[0].id) + 1;
+      dispatch({ type: "INIT", data: recipeList });
+    }
+  }, []);
 
   // create
   const onCreate = (date, title, content, taste) => {
