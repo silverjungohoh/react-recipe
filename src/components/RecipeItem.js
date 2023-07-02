@@ -10,6 +10,7 @@ function RecipeItem({ recipeItem }) {
         <img
           src={process.env.PUBLIC_URL + `assets/taste${recipeItem.taste}.png`}
           alt={`taste-img-${recipeItem.taste}`}
+          onClick={() => navigate(`/recipe/${recipeItem.id}`)}
         />
       </div>
       <div className="info-wrapper">
