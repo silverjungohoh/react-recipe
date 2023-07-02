@@ -33,7 +33,7 @@ const filterOptionList = [
 function RecipeList({ recipeList }) {
   const navigate = useNavigate();
 
-  const [sortType, setSortType] = useState("최신순");
+  const [sortType, setSortType] = useState("latest");
   const [filter, setFilter] = useState("all");
 
   function getProcessedRecipeList() {
