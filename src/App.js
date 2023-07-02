@@ -48,8 +48,10 @@ function App() {
       const recipeList = JSON.parse(localData).sort(
         (a, b) => parseInt(b.id) - parseInt(a.id)
       );
-      dataId.current = parseInt(recipeList[0].id) + 1;
-      dispatch({ type: "INIT", data: recipeList });
+      if (recipeList.length >= 1) {
+        dataId.current = parseInt(recipeList[0].id) + 1;
+        dispatch({ type: "INIT", data: recipeList });
+      }
     }
   }, []);
 
