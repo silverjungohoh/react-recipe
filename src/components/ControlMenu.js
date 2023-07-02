@@ -1,3 +1,5 @@
+import React from "react";
+
 function ControlMenu({ value, onChange, optionList }) {
   return (
     <select
@@ -14,4 +16,4 @@ function ControlMenu({ value, onChange, optionList }) {
   );
 }
 
-export default ControlMenu;
+export default React.memo(ControlMenu);
