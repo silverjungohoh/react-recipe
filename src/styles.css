@@ -1,0 +1,315 @@
+@import url("https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Nanum+Gothic&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Gamja Flower", cursive;
+  background-color: #f6f6f6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+@media (min-width: 650px) {
+  .App {
+    width: 640px;
+  }
+}
+
+@media (max-width: 650px) {
+  .App {
+    width: 90vw;
+  }
+}
+
+#root {
+  background-color: white;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.App {
+  min-height: 100vh;
+  padding: 0 20px;
+}
+
+/* my-button */
+.my-button {
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 18px;
+  font-family: "Nanum Gothic", sans-serif;
+  white-space: nowrap;
+  font-weight: 800;
+}
+
+button.default {
+  background-color: #ececec;
+}
+
+button.negative {
+  background-color: #ff6969;
+  color: white;
+}
+
+button.positive {
+  background-color: #87cbb9;
+  color: white;
+}
+
+button.cancel {
+  background-color: #a5c0dd;
+  color: white;
+}
+
+/* header */
+header {
+  padding: 20px 0;
+  display: flex;
+  border-bottom: 1px solid #e2e2e2;
+}
+
+header div {
+  display: flex;
+}
+
+header .head-text {
+  width: 50%;
+  font-size: 28px;
+  font-weight: 500;
+  justify-content: center;
+}
+
+header .head-btn-left {
+  width: 25%;
+  justify-content: start;
+}
+
+header .head-btn-right {
+  width: 25%;
+  justify-content: end;
+}
+
+/* recipe list */
+.recipe-list .menu-wrapper {
+  margin-top: 20px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.recipe-list .menu-wrapper .right-col {
+  flex-grow: 1;
+}
+
+.recipe-list .menu-wrapper .right-col button {
+  width: 100%;
+}
+
+.recipe-list .control-menu {
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ececec;
+
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 600;
+  font-family: "Nanum Gothic", sans-serif;
+}
+
+/* recipe item */
+.recipe-item {
+  padding: 15px 0;
+  border-bottom: 1px solid #e2e2e2;
+  display: flex;
+  justify-content: space-between;
+}
+
+.recipe-item .taste-img-wrapper {
+  cursor: pointer;
+  min-width: 120px;
+  height: 80px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+}
+
+.recipe-item .info-wrapper {
+  cursor: pointer;
+  flex-grow: 1;
+  margin-left: 10px;
+}
+
+.recipe-item .recipe-date {
+  font-weight: bold;
+  font-size: 25px;
+  margin-bottom: 5px;
+}
+
+.recipe-item .recipe-content-title {
+  font-size: 20px;
+  font-weight: 500;
+  font-family: "Nanum Gothic", sans-serif;
+}
+
+.recipe-item .btn-wrapper {
+  min-width: 70px;
+}
+
+/* recipe editor */
+.recipe-editor section {
+  margin-bottom: 40px;
+  margin-top: 20px;
+}
+
+.recipe-editor h4 {
+  font-size: 22px;
+  font-weight: 800;
+  font-family: "Nanum Gothic", sans-serif;
+  padding: 20px 0;
+}
+
+.recipe-editor .input-date {
+  border: none;
+  border-radius: 5px;
+  background-color: #ececec;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-family: "Nanum Gothic", sans-serif;
+  font-size: 18px;
+}
+
+.recipe-editor .taste-list-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.recipe-editor textarea {
+  width: 100%;
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
+  padding: 20px;
+  min-height: 200px;
+  resize: vertical;
+  background-color: #ececec;
+}
+
+.recipe-editor input[type="text"] {
+  width: 100%;
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
+  padding: 20px;
+  background-color: #ececec;
+}
+
+.recipe-editor .control-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* taste item */
+.taste-item {
+  cursor: pointer;
+  border-radius: 10px;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.taste-item img {
+  margin-bottom: 10px;
+  width: 50%;
+}
+
+.taste-item span {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.taste-item.select {
+  background-color: white;
+  box-shadow: rgba(100, 100, 111, 0.2) 0 0 10px 5px;
+}
+
+/* recipe */
+.recipe-page section {
+  width: 100%;
+  margin-bottom: 40px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.recipe-page h4 {
+  font-size: 22px;
+  font-weight: 800;
+  font-family: "Nanum Gothic", sans-serif;
+  padding: 20px 0;
+  margin-bottom: 20px;
+}
+
+.recipe-page .recipe-img-wrapper {
+  border-radius: 5px;
+  padding: 20px;
+  background-color: white;
+}
+
+.recipe-page .recipe-img-wrapper img {
+  width: 60%;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0 0 10px 5px;
+}
+
+.recipe-page .recipe-img-wrapper div {
+  padding: 20px;
+  font-size: 42px;
+  font-weight: 500;
+  margin-top: 20px;
+}
+
+.recipe-page .recipe-title-wrapper {
+  width: 100%;
+  background-color: #ececec;
+  border-radius: 10px;
+  border: none;
+  word-break: keep-all;
+}
+
+.recipe-page .recipe-content-wrapper {
+  width: 100%;
+  background-color: #ececec;
+  border-radius: 10px;
+  border: none;
+  word-break: keep-all;
+}
+
+.recipe-page .recipe-title-wrapper p {
+  padding: 20px;
+  text-align: left;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.recipe-page .recipe-content-wrapper p {
+  padding: 20px;
+  text-align: left;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 2.5;
+}
