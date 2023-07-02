@@ -17,7 +17,7 @@ function RecipeEditor({ isEdit, origin }) {
   const titleRef = useRef();
   const contentRef = useRef();
 
-  const { onCreate, onEdit } = useContext(RecipeDispatchContext);
+  const { onCreate, onEdit, onRemove } = useContext(RecipeDispatchContext);
 
   function handleClickTaste(taste) {
     setTaste(taste);
@@ -44,6 +44,15 @@ function RecipeEditor({ isEdit, origin }) {
     }
   }
 
+  function handleRemove() {
+    const confirmed = window.confirm("레시피를 삭제하시겠습니까?");
+    if (confirmed) {
+      onRemove(origin.id);
+      window.alert("삭제되었습니다!");
+      navigate("/", { replace: true });
+    }
+  }
+
   useEffect(() => {
     if (isEdit) {
       setDate(getStringDate(new Date(parseInt(origin.date))));
@@ -59,6 +68,15 @@ function RecipeEditor({ isEdit, origin }) {
         <MyHeader
           headText={isEdit ? "레시피 수정" : "레시피 등록"}
           leftChild={<MyButton text={"< 뒤로"} onClick={() => navigate(-1)} />}
+          rightChild={
+            isEdit ? (
+              <MyButton
+                text={"삭제"}
+                type={"negative"}
+                onClick={handleRemove}
+              />
+            ) : null
+          }
         />
       </div>
       <div>
@@ -112,7 +130,7 @@ function RecipeEditor({ isEdit, origin }) {
         <section>
           <div className="control-box">
             <MyButton
-              type={"negative"}
+              type={"cancel"}
               text={"취소"}
               onClick={() => {
                 navigate(-1);
